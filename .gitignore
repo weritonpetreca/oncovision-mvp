@@ -1,0 +1,53 @@
+# --- IDEs & OS ---
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# --- Java & Gradle ---
+.gradle/
+build/
+out/
+bin/
+*.class
+*.log
+# Ignorar todos os JARs, exceto o wrapper do Gradle
+*.jar
+!backend-java/gradle/wrapper/gradle-wrapper.jar
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.venv/
+
+# --- Terraform ---
+# Diretório local do terraform (plugins, providers)
+.terraform/
+
+# Arquivos de estado (CONTÉM SEGREDOS - NUNCA COMMITAR)
+*.tfstate
+*.tfstate.backup
+
+# Arquivos de variáveis com segredos (ex: terraform.tfvars)
+*.tfvars
+*.tfvars.json
+
+# Arquivos de crash log
+crash.log
+
+# --- AWS & Deploy ---
+# Arquivo ZIP gerado para a Lambda
+*.zip
+
+# Credenciais AWS (caso tenham sido salvas localmente por engano)
+.aws/
+credentials
+config
+
+# --- Outros ---
+node_modules/
+dist/

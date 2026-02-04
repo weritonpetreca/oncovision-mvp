@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.oncovision'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 1. AWS SDK v2 (Modular e Moderno)
+    implementation platform('software.amazon.awssdk:bom:2.25.14')
+    implementation 'software.amazon.awssdk:s3'
+    implementation 'software.amazon.awssdk:dynamodb'
+    implementation 'software.amazon.awssdk:url-connection-client'
+
+    // 2. Bibliotecas Core da AWS Lambda
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.3'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.4'
+
+    // 3. Utilitário JSON
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+// Tarefa para criar o ZIP para o Terraform/AWS
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtimeClasspath
+    }
+    archiveFileName = "backend-java.zip"
+    destinationDirectory = file("$buildDir/distributions")
+}
+
+build.dependsOn buildZip
