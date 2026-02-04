@@ -103,7 +103,7 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 
 Construa a imagem (compatível com Lambda x86_64):
 ```bash
-docker build --platform linux/amd64 -t oncovision-ai .
+docker build --platform linux/amd64 --provenance=false -t oncovision-ai .
 ```
 
 Tagueie a imagem:
